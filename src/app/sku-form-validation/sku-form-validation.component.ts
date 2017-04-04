@@ -17,6 +17,7 @@ function skuValidator(formControl: FormControl): { [s: string]:  boolean} {
 })
 export class SkuFormValidationComponent implements OnInit {
   
+  sku: AbstractControl;
   myForm: FormGroup;
   constructor(private fb: FormBuilder) {
 
@@ -27,6 +28,19 @@ export class SkuFormValidationComponent implements OnInit {
   		])]
   	});
 
+  	this.sku = this.myForm.controls['sku'];
+
+  	this.sku.valueChanges.subscribe(
+  		(value: string) => {
+  			console.log("Sku value changes to :", value);
+  		}
+  	);
+
+  	this.myForm.valueChanges.subscribe(
+  		(form : any) => {
+  			console.log(" form changes to : ", form);
+  		}
+  	);
   }
 
   ngOnInit() {
